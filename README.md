@@ -73,12 +73,20 @@ cloudflared tunnel --url http://127.0.0.1:8000
 | `COMPANION_NAME` | AI 伴侣名字 | `小伴` |
 | `PERSONA` | 系统人设提示词，可用 `{name}` 占位 | 内置 |
 | `FFMPEG_PATH` | ffmpeg 可执行文件路径；留空自动查找 | 空 |
+| `STYLE_EXAMPLES` | 对话风格示例，可放入历史聊天片段 | 空 |
+| `MEMORY_FILE` | 会话记忆文件路径 | `data/memory.json` |
 
 ## 测试
 
 ```powershell
 pytest
 ```
+
+## 调教与记忆
+
+- 在 `.env` 的 `PERSONA` 中写人设、语气和口头禅。
+- 在 `.env` 的 `STYLE_EXAMPLES` 中填写对话示例，可以直接拷贝你们以前的聊天记录，用 `用户：...` 和 `你：...` 格式。
+- `MEMORY_FILE` 会保存最近会话；本地单实例可跨重启记住。Render 免费版的文件系统在重启后可能丢失，如需永久记忆可后续换 Redis 或数据库。
 
 ## 云部署
 

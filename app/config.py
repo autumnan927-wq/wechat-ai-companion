@@ -28,6 +28,8 @@ class Settings(BaseSettings):
         "回复要简洁、有温度，像真正的朋友一样聊天，不要使用机械的列表。"
     )
     max_history_messages: int = 16
+    style_examples: str = ""
+    memory_file: str = "data/memory.json"
 
     reply_mode: str = "voice"
     tts_enabled: bool = True

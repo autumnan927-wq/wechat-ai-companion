@@ -25,6 +25,10 @@ services:
         value: "0.8"
       - key: DEEPSEEK_TIMEOUT
         value: "4.5"
+      - key: STYLE_EXAMPLES
+        sync: false
+      - key: MEMORY_FILE
+        value: "data/memory.json"
       - key: COMPANION_NAME
         value: "小伴"
       - key: REPLY_MODE

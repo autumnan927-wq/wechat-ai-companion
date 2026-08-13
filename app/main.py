@@ -25,6 +25,7 @@ app = FastAPI(title=settings.app_name)
 wechat = WeChatClient(settings)
 deepseek = DeepSeekClient(settings)
 sessions = SessionStore(settings.max_history_messages)
+sessions.load(settings.memory_file)
 
 
 @app.get("/health")
@@ -145,6 +146,7 @@ async def handle_message(message: dict[str, str]) -> None:
         history = sessions.get_history(user_id)
         reply_text = await deepseek.chat(build_messages(settings, history, user_text))
         sessions.add_turn(user_id, user_text, reply_text)
+        sessions.save(settings.memory_file)
     except Exception as exc:
         logger.exception("生成回复失败")
         await _send_text(user_id, "我刚刚走神了，请再试一次。")
@@ -211,6 +213,7 @@ async def handle_message_passive(message: dict[str, str]) -> str:
             timeout=settings.deepseek_timeout,
         )
         sessions.add_turn(user_id, user_text, reply_text)
+        sessions.save(settings.memory_file)
     except Exception:
         logger.exception("\u751f\u6210\u56de\u590d\u5931\u8d25")
         return build_text_reply(user_id, official_id, "\u6211\u521a\u521a\u8d70\u795e\u4e86\uff0c\u8bf7\u518d\u8bd5\u4e00\u6b21\u3002")
