@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: wechat-ai-companion
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: WECHAT_TOKEN
+        sync: false
+      - key: WECHAT_APP_ID
+        sync: false
+      - key: WECHAT_APP_SECRET
+        sync: false
+      - key: WECHAT_ENCODING_AES_KEY
+        sync: false
+      - key: WECHAT_ENCRYPT_MODE
+        value: "false"
+      - key: DEEPSEEK_API_KEY
+        sync: false
+      - key: DEEPSEEK_BASE_URL
+        value: "https://api.deepseek.com"
+      - key: DEEPSEEK_MODEL
+        value: "deepseek-chat"
+      - key: DEEPSEEK_TEMPERATURE
+        value: "0.8"
+      - key: DEEPSEEK_TIMEOUT
+        value: "4.5"
+      - key: COMPANION_NAME
+        value: "小伴"
+      - key: REPLY_MODE
+        value: "text"
+      - key: TTS_ENABLED
+        value: "true"
