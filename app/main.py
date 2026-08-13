@@ -32,6 +32,17 @@ async def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
+@app.get("/health/config")
+async def health_config() -> dict[str, object]:
+    return {
+        "wechat_token": bool(settings.wechat_token),
+        "wechat_app_id": bool(settings.wechat_app_id),
+        "wechat_app_secret": bool(settings.wechat_app_secret),
+        "deepseek_api_key": bool(settings.deepseek_api_key),
+        "reply_mode": settings.reply_mode,
+    }
+
+
 @app.get("/wechat")
 async def verify_wechat(
     signature: str = Query(default=""),
