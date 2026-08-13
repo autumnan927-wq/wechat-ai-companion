@@ -49,6 +49,8 @@ async def health_config() -> dict[str, object]:
         "wechat_app_id": bool(settings.wechat_app_id),
         "wechat_app_secret": bool(settings.wechat_app_secret),
         "deepseek_api_key": bool(settings.deepseek_api_key),
+        "style_examples": bool(settings.style_examples),
+        "memory_file": settings.memory_file,
         "reply_mode": settings.reply_mode,
     }
 
