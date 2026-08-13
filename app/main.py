@@ -32,6 +32,15 @@ async def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
+@app.get("/health/deepseek")
+async def health_deepseek() -> dict[str, object]:
+    try:
+        reply = await deepseek.chat([{"role": "user", "content": "ping"}])
+        return {"ok": True, "reply": reply[:50]}
+    except Exception as exc:
+        return {"ok": False, "error_type": type(exc).__name__, "error": str(exc)[:300]}
+
+
 @app.get("/health/config")
 async def health_config() -> dict[str, object]:
     return {
