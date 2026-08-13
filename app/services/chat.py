@@ -47,7 +47,7 @@ def build_messages(
     user_text: str,
 ) -> list[dict[str, str]]:
     system_parts = [settings.persona_prompt]
-    style_examples = getattr(settings, "style_examples", "").strip()
+    style_examples = getattr(settings, "style_examples", "").strip().replace("\\n", "\n")
     if style_examples:
         system_parts.append("\u8bf4\u8bdd\u98ce\u683c\u793a\u4f8b\uff1a\n" + style_examples)
 
