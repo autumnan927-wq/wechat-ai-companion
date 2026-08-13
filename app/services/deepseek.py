@@ -9,7 +9,7 @@ class DeepSeekClientError(RuntimeError):
 
 class DeepSeekClient:
     def __init__(self, settings: Any) -> None:
-        self._api_key = settings.deepseek_api_key
+        self._api_key = settings.deepseek_api_key.strip()
         self._base_url = settings.deepseek_base_url.rstrip("/")
         self._model = settings.deepseek_model
         self._temperature = settings.deepseek_temperature

@@ -10,8 +10,8 @@ class WeChatClientError(RuntimeError):
 
 class WeChatClient:
     def __init__(self, settings: Any) -> None:
-        self._app_id = settings.wechat_app_id
-        self._app_secret = settings.wechat_app_secret
+        self._app_id = settings.wechat_app_id.strip()
+        self._app_secret = settings.wechat_app_secret.strip()
         self._access_token: str | None = None
         self._token_expires_at: float = 0.0
 
